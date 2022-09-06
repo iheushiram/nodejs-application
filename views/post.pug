@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .form-content
+    form(method="POST" action="/post")
+      .mt-3.mr-3.ml-3
+        label.form-label.mt-2
+        textarea(name="post-content").form-control 
+        button(type="submit").btn.btn-primary.mt-2 投稿する
+  

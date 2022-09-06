@@ -1,0 +1,63 @@
+body {
+  padding: 5px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+}
+
+a {
+  color: #00B7FF;
+}
+
+article > .content {
+  padding-top: -5px;
+}
+
+.user {
+  text-align: left;
+}
+
+hr {
+  margin : 5px;
+  margin-bottom: 2px;
+}
+
+.post-btn {
+  text-align: right;
+  margin-right: 4rem;
+}
+
+.form-content {
+  width: 30em;
+  margin: 0 auto;
+}
+
+.form-content textarea {
+  height: 200px;
+  resize: none;
+}
+
+.content {
+  cursor: pointer;
+  position: relative;
+}
+
+.content:hover {
+  background-color: whitesmoke;
+}
+
+
+
+.content-user {
+  font-weight: bold;
+}
+
+.btn-delete {
+  display: none;
+  position: absolute;
+  bottom: 10%;
+  right: 5px;
+}
+
+.content:hover .btn-delete {
+  display: block;
+}

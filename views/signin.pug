@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  form(method="POST" action="/signin")
+    | 名前：
+    input(type="text" name="name") 
+    | メールアドレス：
+    input(type="text" name="email") 
+    button(type="submit") ログイン
+
+  

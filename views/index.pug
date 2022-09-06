@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  header 
+    .post-btn
+      if isAuth
+        a(href="/post").btn.btn-primary.btn-sm 投稿する
+        br
+        a(href="/logout").btn.btn-primary.btn-sm.btn-danger ログアウト
+      else 
+        a(href="/signin") ログイン 
+        | / 
+        a(href="/signup") 登録
+    
+
+  .container.text-center
+    .row
+      .col 
+      .col 投稿一覧 
+        each content in contents 
+          - var isSelf= content.author.id === userId
+          article
+            .content 
+              .user
+                - var date = new Date(content.created_at)
+                p
+                  span.content-user #{content.author.name} 
+                  span ・ #{date.getFullYear()}-#{date.getMonth() + 1}-#{date.getDate()} #{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}
+                p #{content.content} 
+                if isSelf
+                  form(method="POST" action="/delete")
+                    input(type="hidden" name="contentId" value=`${content.id}`)
+                    button.btn.btn-primary.btn-sm.btn-delete.btn-danger 消す
+              hr
+      .col 
+
+
+
+  
