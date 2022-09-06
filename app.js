@@ -7,7 +7,7 @@ const helmet = require('helmet');
 const flash = require('express-flash');
 
 const  indexRouter = require('./routes/index');
-const  usersRouter = require('./routes/users');
+const  usersRouter = require('./routes/user');
 const signupRouter = require('./routes/signup');
 const signinRouter = require('./routes/signin');
 const logoutRouter = require('./routes/logout');
@@ -33,7 +33,7 @@ require('./config/passport')(app);
 
 //router
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/logout', logoutRouter);

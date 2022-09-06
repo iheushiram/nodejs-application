@@ -1,16 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const  express = require('express');
 const { PrismaClient } = require('@prisma/client');
+
+var router = express.Router();
 
 const prisma = new PrismaClient();
 
-/* GET home page. */
-router.get('/', async function(req, res, next) {
-  const users = await prisma.user.findMany();
-  const posts = await prisma.post.findMany();
+/* GET users listing. */
+router.get('/:userid', async function(req, res, next) {
+  const userId = req.params.userid;
   const sessionId = req.session.passport.user;
   const isAuth = Boolean(sessionId);
   const selectedPosts = await prisma.post.findMany({
+    where: {
+      authorId:  parseInt(userId),
+    },
     select: {
       id: true,
       title: true,
@@ -28,28 +31,13 @@ router.get('/', async function(req, res, next) {
       created_at: 'desc'
     }]
   });
-
-  res.render('index', { 
+  res.render('user', { 
     title: 'Express',
     sessionId: sessionId,
-    users: users ,
-    posts: posts,
     isAuth: isAuth,
     contents: selectedPosts,
     
   });
-});
-
-
-router.post('/delete', async (req, res, next) => {
-  const contentId = req.body.contentId;
-  const deletedContent = await prisma.post.delete({
-    where: {
-      id: parseInt(contentId),
-    }
-  });
-
-  res.redirect('/');
 });
 
 module.exports = router;

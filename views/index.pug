@@ -18,13 +18,13 @@ block content
       .col 
       .col 投稿一覧 
         each content in contents 
-          - var isSelf= content.author.id === userId
-          article
+          - var isSelf= content.author.id === sessionId
+          article 
             .content 
               .user
                 - var date = new Date(content.created_at)
                 p
-                  span.content-user #{content.author.name} 
+                  a(href=`/user/${content.author.id}`).content-user #{content.author.name} 
                   span ・ #{date.getFullYear()}-#{date.getMonth() + 1}-#{date.getDate()} #{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}
                 p #{content.content} 
                 if isSelf
