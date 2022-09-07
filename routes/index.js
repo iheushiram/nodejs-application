@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 router.get('/', async function(req, res, next) {
   const users = await prisma.user.findMany();
   const posts = await prisma.post.findMany();
-  const sessionId = req.session.passport.user;
+  const sessionId = req.session.passport.user || undefined;
   const isAuth = Boolean(sessionId);
   const selectedPosts = await prisma.post.findMany({
     select: {
