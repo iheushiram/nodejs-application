@@ -1,12 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  form(method="POST" action="/signin")
-    | 名前：
-    input(type="text" name="name") 
-    | メールアドレス：
-    input(type="text" name="email") 
-    button(type="submit") ログイン
+  .form-content
+    form(method="POST" action="/signin")
+      .mb-3
+        label(for="nameForm").form-label 名前：
+        input(type="text" name="name")#nameForm.form-control
+      .mb-3
+        label(for="emailForm").form-label メールアドレス：
+        input(type="text" name="email")#emailForm.form-control 
+      button(type="submit") ログイン
 
   
